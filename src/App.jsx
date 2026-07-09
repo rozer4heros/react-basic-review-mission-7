@@ -10,6 +10,7 @@ import FilterButton from "./components/FilterButton";
 function App() {
   const [category, setCategory] = useState("all");
   const [keyword, setKeyword] = useState("");
+  const [selectedId, setSelectedId] = useState(null);
 
   const filterCategory = (item) => {
     if (category === "all") return true;
@@ -21,6 +22,10 @@ function App() {
     if (item.title.includes(keyword)) return true;
 
     return false;
+  };
+
+  const onSelect = (id) => {
+    setSelectedId(id);
   };
 
   return (
@@ -44,7 +49,11 @@ function App() {
       </div>
       <h2>검색</h2>
       <input type="text" placeholder="키워드 입력" value={keyword} onChange={(e) => setKeyword(e.target.value)} />
-      <StudyList items={reactData.filter((i) => filterCategory(i)).filter((i) => filterKeyword(i))} />
+      <StudyList
+        items={reactData.filter((i) => filterCategory(i)).filter((i) => filterKeyword(i))}
+        onSelect={onSelect}
+        selectedId={selectedId}
+      />
     </>
   );
 }
