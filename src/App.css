@@ -1,5 +1,13 @@
+button {
+  min-height: 2em;
+  box-shadow: var(--shadow);
+}
+button.active {
+}
+
 article.active {
   padding-bottom: 1em;
+  box-shadow: var(--shadow);
 
   border: 1px solid blue;
   background: #7fffd40f;

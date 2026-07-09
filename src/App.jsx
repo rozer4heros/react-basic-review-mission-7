@@ -29,16 +29,16 @@ function App() {
       <p>전체 학습 항목 수: {reactData.length}개</p>
       <h2>카테고리 필터</h2>
       <div>
-        <FilterButton value="all" setCategory={setCategory}>
+        <FilterButton value="all" setCategory={setCategory} selected={category}>
           전체
         </FilterButton>
-        <FilterButton value="concept" setCategory={setCategory}>
+        <FilterButton value="concept" setCategory={setCategory} selected={category}>
           concept
         </FilterButton>
-        <FilterButton value="library" setCategory={setCategory}>
+        <FilterButton value="library" setCategory={setCategory} selected={category}>
           library
         </FilterButton>
-        <FilterButton value="hook" setCategory={setCategory}>
+        <FilterButton value="hook" setCategory={setCategory} selected={category}>
           hook
         </FilterButton>
       </div>

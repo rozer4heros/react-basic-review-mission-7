@@ -1,6 +1,8 @@
-function FilterButton({ value, setCategory, children }) {
+function FilterButton({ value, setCategory, selected, children }) {
+  const isSelected = value === selected;
+
   return (
-    <button type="button" onClick={() => setCategory(value)}>
+    <button className={isSelected ? "active" : ""} type="button" onClick={() => setCategory(value)}>
       {children}
     </button>
   );
