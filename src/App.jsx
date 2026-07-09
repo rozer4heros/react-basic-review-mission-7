@@ -25,6 +25,10 @@ function App() {
   };
 
   const onSelect = (id) => {
+    if (id === selectedId) {
+      setSelectedId(null);
+      return;
+    }
     setSelectedId(id);
   };
 
