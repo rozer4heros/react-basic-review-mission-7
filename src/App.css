@@ -1,6 +1,7 @@
 button {
   min-height: 2em;
   border-radius: 4px;
+  margin: 0px 4px;
   box-shadow: var(--shadow);
 
   color: var(--text);
@@ -19,11 +20,17 @@ input {
   margin: 0px auto;
 }
 
+article {
+  padding-bottom: 20px;
+  border-radius: 4px;
+  margin: 8px 32px;
+
+  border: 2px solid var(--border);
+}
 article.active {
-  padding-bottom: 1em;
   box-shadow: var(--shadow);
 
   color: var(--accent);
   background: var(--accent-bg);
-  border: 1px solid var(--accent-border);
+  border: 2px solid var(--accent-border);
 }
