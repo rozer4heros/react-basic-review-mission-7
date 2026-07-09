@@ -9,10 +9,16 @@ import FilterButton from "./components/FilterButton";
 
 function App() {
   const [category, setCategory] = useState("all");
+  const [keyword, setKeyword] = useState("");
 
-  const handleFilter = (item) => {
+  const filterCategory = (item) => {
     if (category === "all") return true;
     if (item.category === category) return true;
+
+    return false;
+  };
+  const filterKeyword = (item) => {
+    if (item.title.includes(keyword)) return true;
 
     return false;
   };
@@ -37,8 +43,8 @@ function App() {
         </FilterButton>
       </div>
       <h2>검색</h2>
-      <input type="text" />
-      <StudyList items={reactData.filter((i) => handleFilter(i))} />
+      <input type="text" placeholder="키워드 입력" value={keyword} onChange={(e) => setKeyword(e.target.value)} />
+      <StudyList items={reactData.filter((i) => filterCategory(i)).filter((i) => filterKeyword(i))} />
     </>
   );
 }
