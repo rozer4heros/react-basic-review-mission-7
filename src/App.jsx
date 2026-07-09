@@ -25,7 +25,7 @@ function App() {
 
   return (
     <>
-      <h1>react basic review mission 2</h1>
+      <h1>react basic review mission 7</h1>
       <p>전체 학습 항목 수: {reactData.length}개</p>
       <h2>카테고리 필터</h2>
       <div>
