@@ -1,0 +1,14 @@
+article.active {
+  padding-bottom: 1em;
+
+  border: 1px solid blue;
+  background: #7fffd40f;
+  color: blue;
+}
+@media (prefers-color-scheme: dark) {
+  article.active {
+    border: 1px solid aquamarine;
+    background: #0000ff0f;
+    color: aquamarine;
+  }
+}

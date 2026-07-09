@@ -1,6 +1,8 @@
 import reactData from "./data/data.json";
 // { id, title, desc, category, level }
 
+import "./App.css";
+
 import StudyList from "./components/StudyList";
 
 function App() {
