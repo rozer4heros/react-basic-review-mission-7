@@ -15,7 +15,8 @@ function StudyList({ items }) {
 
   return (
     <>
-      <>{list}</>
+      <h2>학습 목록</h2>
+      {list}
     </>
   );
 }
