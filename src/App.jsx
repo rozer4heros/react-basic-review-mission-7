@@ -19,7 +19,7 @@ function App() {
     return false;
   };
   const filterKeyword = (item) => {
-    if (item.title.includes(keyword)) return true;
+    if (item.title.toLowerCase().includes(keyword.toLowerCase())) return true;
 
     return false;
   };
