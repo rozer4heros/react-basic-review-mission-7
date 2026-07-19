@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-import StudyInfo from "./StudyInfo";
+import StudyItem from "./StudyItem";
 
 function StudyList({ items, onSelect, selectedId, favoriteIds, handleFavorite }) {
   // { id, title, desc, category, level }
 
   const list = items.map((i) => (
-    <StudyInfo
+    <StudyItem
       key={i.id}
       data={i}
       onSelect={onSelect}

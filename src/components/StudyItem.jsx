@@ -1,4 +1,4 @@
-function StudyInfo({ data, onSelect, selectedId, favoriteIds, handleFavorite }) {
+function StudyItem({ data, onSelect, selectedId, favoriteIds, handleFavorite }) {
   const isSelected = data.id === selectedId;
 
   return (
@@ -34,4 +34,4 @@ function StudyInfo({ data, onSelect, selectedId, favoriteIds, handleFavorite }) 
   );
 }
 
-export default StudyInfo;
+export default StudyItem;
