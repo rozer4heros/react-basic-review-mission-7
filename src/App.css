@@ -16,6 +16,16 @@ button.active {
   background: var(--accent-bg);
   border: 1px solid var(--accent-border);
 }
+.sticky {
+  position: sticky;
+  top: 75%;
+  z-index: 127;
+}
+.sticky button {
+  position: absolute;
+  right: 0;
+  font-size: 1em;
+}
 
 input {
   margin: 0px auto;

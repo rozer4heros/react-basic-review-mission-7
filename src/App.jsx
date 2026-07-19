@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 
 import reactData from "./data/data.json";
 // { id, title, desc, category, level }
@@ -16,6 +16,8 @@ function App() {
   const [favoriteIds, setFavoriteIds] = useState([]);
   const [favoriteOnly, setFavoriteOnly] = useState(false);
 
+  const searchInputRef = useRef(null);
+
   const filteredData = useMemo(
     () =>
       reactData
@@ -32,6 +34,10 @@ function App() {
     }),
     [filteredData, favoriteIds],
   );
+
+  useEffect(() => {
+    searchInputRef.current.focus();
+  }, []);
 
   function filterCategory(item) {
     if (category === "all") return true;
@@ -55,17 +61,24 @@ function App() {
     },
     [selectedId],
   );
-
   const handleToggleFavorite = useCallback((id) => {
     setFavoriteIds((prev) => (prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]));
   }, []);
+  const handleFocusSearch = () => {
+    searchInputRef.current.focus();
+  };
 
   return (
     <>
+      <div className="sticky">
+        <button type="button" onClick={handleFocusSearch}>
+          검색창으로 이동
+        </button>
+      </div>
       <h1>react basic review mission 7</h1>
       <StudySummary summary={summary} />
       <CategoryFilter category={category} setCategory={setCategory} />
-      <SearchForm keyword={keyword} setKeyword={setKeyword} />
+      <SearchForm ref={searchInputRef} keyword={keyword} setKeyword={setKeyword} />
       <div>
         <button type="button" className={favoriteOnly ? "active" : ""} onClick={() => setFavoriteOnly((prev) => !prev)}>
           즐겨찾기만 보기
