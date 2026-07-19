@@ -1,8 +1,13 @@
-function StudyInfo({ data, onSelect, selectedId }) {
+function StudyInfo({ data, onSelect, selectedId, favoriteIds, handleFavorite }) {
   const isSelected = data.id === selectedId;
 
   return (
-    <article className={isSelected ? "active" : ""} onClick={() => onSelect(data.id)}>
+    <article
+      className={isSelected ? "active" : ""}
+      onClick={(e) => {
+        onSelect(data.id);
+      }}
+    >
       <h3>
         {data.id}. {data.title}
       </h3>
@@ -15,6 +20,16 @@ function StudyInfo({ data, onSelect, selectedId }) {
       ) : (
         <></>
       )}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          handleFavorite(data.id);
+        }}
+      >
+        {favoriteIds.includes(data.id) ? "☆ 즐겨찾기 해제" : "★ 즐겨찾기"}
+      </button>
+      <b>{favoriteIds.includes(data.id) && "★"}</b>
     </article>
   );
 }
