@@ -1,6 +1,7 @@
 import { memo } from "react";
 
 function StudyItem({ item, onSelect, selectedId, favoriteIds, onToggleFavorite }) {
+  // id, title, desc, category, level
   console.log(`Rendered ${item.title}`);
 
   const isSelected = item.id === selectedId;
@@ -16,7 +17,9 @@ function StudyItem({ item, onSelect, selectedId, favoriteIds, onToggleFavorite }
         {item.id}. {item.title}
       </h3>
       <p>{item.desc}</p>
-      <p>분류: {item.category}</p>
+      <p>
+        분류: {item.category} / 난이도: {item.level}
+      </p>
       {isSelected && (
         <p>
           <b>선택된 항목입니다.</b>

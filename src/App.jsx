@@ -17,6 +17,8 @@ function App() {
   const [favoriteOnly, setFavoriteOnly] = useState(false);
 
   const searchInputRef = useRef(null);
+  const renderCount = useRef(0);
+  renderCount.current += 1;
 
   const filteredData = useMemo(
     () =>
@@ -75,15 +77,16 @@ function App() {
           검색창으로 이동
         </button>
       </div>
-      <h1>react basic review mission 7</h1>
-      <StudySummary summary={summary} />
-      <CategoryFilter category={category} setCategory={setCategory} />
+      <h1>react basic review mission 8</h1>
       <SearchForm ref={searchInputRef} keyword={keyword} setKeyword={setKeyword} />
+      <CategoryFilter category={category} setCategory={setCategory} />
       <div>
         <button type="button" className={favoriteOnly ? "active" : ""} onClick={() => setFavoriteOnly((prev) => !prev)}>
           즐겨찾기만 보기
         </button>
       </div>
+      <StudySummary summary={summary} />
+      <p>App 렌더링 횟수: {renderCount.current}</p>
       <StudyList
         items={filteredData}
         onSelect={onSelect}
