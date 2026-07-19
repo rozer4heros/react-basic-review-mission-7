@@ -1,4 +1,4 @@
-function SearchForm({ ref, keyword, setKeyword }) {
+function SearchForm({ ref, keyword, setKeyword, prev }) {
   return (
     <>
       <h2>검색</h2>
@@ -10,6 +10,7 @@ function SearchForm({ ref, keyword, setKeyword }) {
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
       />
+      <p>이전 검색어: {prev}</p>
     </>
   );
 }

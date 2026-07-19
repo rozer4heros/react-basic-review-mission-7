@@ -18,7 +18,7 @@ button.active {
 }
 .sticky {
   position: sticky;
-  top: 75%;
+  top: 25%;
   z-index: 127;
 }
 .sticky button {
