@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 import reactData from "./data/data.json";
 // { id, title, desc, category, level }
 
 import "./App.css";
+import StudySummary from "./components/StudySummary";
 import StudyList from "./components/StudyList";
 import FilterButton from "./components/FilterButton";
 
@@ -14,23 +15,34 @@ function App() {
   const [favoriteIds, setFavoriteIds] = useState([]);
   const [favoriteOnly, setFavoriteOnly] = useState(false);
 
-  const filterCategory = (item) => {
+  const filteredData = useMemo(
+    () =>
+      reactData
+        .filter((i) => filterCategory(i))
+        .filter((i) => filterKeyword(i))
+        .filter((i) => filterFavorite(i)),
+    [keyword, category, favoriteOnly, favoriteIds],
+  );
+  const summary = useMemo(
+    () => ({
+      total: reactData.length,
+      visible: filteredData.length,
+      favorite: favoriteIds.length,
+    }),
+    [filteredData, favoriteIds],
+  );
+
+  function filterCategory(item) {
     if (category === "all") return true;
-    if (item.category === category) return true;
-
-    return false;
-  };
-  const filterKeyword = (item) => {
-    if (item.title.toLowerCase().includes(keyword.toLowerCase())) return true;
-
-    return false;
-  };
-  const filterFavorite = (item) => {
+    return item.category === category;
+  }
+  function filterKeyword(item) {
+    return item.title.toLowerCase().includes(keyword.toLowerCase());
+  }
+  function filterFavorite(item) {
     if (!favoriteOnly) return true;
-    if (favoriteIds.includes(item.id)) return true;
-
-    return false;
-  };
+    return favoriteIds.includes(item.id);
+  }
 
   const onSelect = (id) => {
     if (id === selectedId) {
@@ -47,7 +59,7 @@ function App() {
   return (
     <>
       <h1>react basic review mission 7</h1>
-      <p>전체 학습 항목 수: {reactData.length}개</p>
+      <StudySummary summary={summary} />
       <h2>카테고리 필터</h2>
       <div>
         <FilterButton value="all" setCategory={setCategory} selected={category}>
@@ -77,10 +89,7 @@ function App() {
         onChange={(e) => setKeyword(e.target.value)}
       />
       <StudyList
-        items={reactData
-          .filter((i) => filterCategory(i))
-          .filter((i) => filterKeyword(i))
-          .filter((i) => filterFavorite(i))}
+        items={filteredData}
         onSelect={onSelect}
         selectedId={selectedId}
         favoriteIds={favoriteIds}
