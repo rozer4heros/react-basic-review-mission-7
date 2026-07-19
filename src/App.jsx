@@ -6,7 +6,8 @@ import reactData from "./data/data.json";
 import "./App.css";
 import StudySummary from "./components/StudySummary";
 import StudyList from "./components/StudyList";
-import FilterButton from "./components/FilterButton";
+import CategoryFilter from "./components/CategoryFilter";
+import SearchForm from "./components/SearchForm";
 
 function App() {
   const [category, setCategory] = useState("all");
@@ -60,34 +61,13 @@ function App() {
     <>
       <h1>react basic review mission 7</h1>
       <StudySummary summary={summary} />
-      <h2>카테고리 필터</h2>
-      <div>
-        <FilterButton value="all" setCategory={setCategory} selected={category}>
-          전체
-        </FilterButton>
-        <FilterButton value="concept" setCategory={setCategory} selected={category}>
-          concept
-        </FilterButton>
-        <FilterButton value="library" setCategory={setCategory} selected={category}>
-          library
-        </FilterButton>
-        <FilterButton value="hook" setCategory={setCategory} selected={category}>
-          hook
-        </FilterButton>
-      </div>
+      <CategoryFilter category={category} setCategory={setCategory} />
+      <SearchForm keyword={keyword} setKeyword={setKeyword} />
       <div>
         <button type="button" className={favoriteOnly ? "active" : ""} onClick={() => setFavoriteOnly((prev) => !prev)}>
           즐겨찾기만 보기
         </button>
       </div>
-      <h2>검색</h2>
-      <input
-        type="text"
-        name="search"
-        placeholder="키워드 입력"
-        value={keyword}
-        onChange={(e) => setKeyword(e.target.value)}
-      />
       <StudyList
         items={filteredData}
         onSelect={onSelect}
