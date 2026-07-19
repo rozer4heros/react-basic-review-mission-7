@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 
 import reactData from "./data/data.json";
 // { id, title, desc, category, level }
@@ -45,17 +45,20 @@ function App() {
     return favoriteIds.includes(item.id);
   }
 
-  const onSelect = (id) => {
-    if (id === selectedId) {
-      setSelectedId(null);
-      return;
-    }
-    setSelectedId(id);
-  };
+  const onSelect = useCallback(
+    (id) => {
+      if (id === selectedId) {
+        setSelectedId(null);
+        return;
+      }
+      setSelectedId(id);
+    },
+    [selectedId],
+  );
 
-  const handleFavorite = (id) => {
+  const handleToggleFavorite = useCallback((id) => {
     setFavoriteIds((prev) => (prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]));
-  };
+  }, []);
 
   return (
     <>
@@ -73,7 +76,7 @@ function App() {
         onSelect={onSelect}
         selectedId={selectedId}
         favoriteIds={favoriteIds}
-        handleFavorite={handleFavorite}
+        onToggleFavorite={handleToggleFavorite}
       />
     </>
   );

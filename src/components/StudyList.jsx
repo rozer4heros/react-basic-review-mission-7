@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 
 import StudyItem from "./StudyItem";
 
-function StudyList({ items, onSelect, selectedId, favoriteIds, handleFavorite }) {
+function StudyList({ items, onSelect, selectedId, favoriteIds, onToggleFavorite }) {
   // { id, title, desc, category, level }
 
   const list = items.map((i) => (
     <StudyItem
       key={i.id}
-      data={i}
+      item={i}
       onSelect={onSelect}
       selectedId={selectedId}
       favoriteIds={favoriteIds}
-      handleFavorite={handleFavorite}
+      onToggleFavorite={onToggleFavorite}
     />
   ));
 
@@ -24,4 +24,4 @@ function StudyList({ items, onSelect, selectedId, favoriteIds, handleFavorite })
   );
 }
 
-export default StudyList;
+export default memo(StudyList);
