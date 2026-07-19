@@ -40,7 +40,7 @@ article.active {
 article button {
   z-index: 1;
 }
-article b {
+article > b {
   position: absolute;
   top: 1em;
   right: 2em;

@@ -17,23 +17,22 @@ function StudyItem({ item, onSelect, selectedId, favoriteIds, onToggleFavorite }
       </h3>
       <p>{item.desc}</p>
       <p>분류: {item.category}</p>
-      {isSelected ? (
+      {isSelected && (
         <p>
-          <strong>선택된 항목입니다.</strong>
+          <b>선택된 항목입니다.</b>
         </p>
-      ) : (
-        <></>
       )}
       <button
         type="button"
+        className={favoriteIds.includes(item.id) ? "active" : ""}
         onClick={(e) => {
           e.stopPropagation();
           onToggleFavorite(item.id);
         }}
       >
-        {favoriteIds.includes(item.id) ? "☆ 즐겨찾기 해제" : "★ 즐겨찾기"}
+        ★ 즐겨찾기
       </button>
-      <b>{favoriteIds.includes(item.id) && "★"}</b>
+      {favoriteIds.includes(item.id) && <b>★</b>}
     </article>
   );
 }
